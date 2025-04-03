@@ -1,1 +1,1 @@
-# Vihara
+# TechStudio
