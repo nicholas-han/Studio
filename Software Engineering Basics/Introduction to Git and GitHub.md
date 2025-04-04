@@ -14,7 +14,7 @@ Linux development in the early 2000's was managed under a free-to-use system kno
 - Strong support for non-linear development: Linus patches were then arriving at a rate of 6.7 patches per second
 - Distributed development: each developer can have a local copy of the full development history
 - Compatibility with existing systems and protocols: this was necessary to acknowledge the diversity of the Linux community
-- Efficinet handling of large projects
+- Efficient handling of large projects
 - Cryptographic authentication of history: this makes certain that distributed systems all have identical code updates
 - Pluggable merge strategies: many pathways of development can lead to complex integration decisions that might require explicit integration strategies
 
@@ -59,7 +59,7 @@ The commit message should be meaningful and descriptive. Best practices of a com
 ### Pull Request
 The next step is pushing the changes in the branch to the remote repository. Most often, the code is reviewed by a maintainer who is responsible for managing the repository before it is merged into the main branch in the remote repository.
 
-To merge the branch, you create a pull request. It is a request to the maintainer to review and approve the proposed (committed) changes in the branch. GitHub automatically makes a pull request if you make a change on a branch that you don't own. After the maintainer merges the pull request, the changes in the branch will be reflected in the main branch. Similarly, if you have maintainer access, you will receive pull request from team members, and review and approve their requests. Since the logfiles are immutable, it's always possible to find the person who approved the merge of the change.
+To merge the branch, you create a pull request. It is a request to the maintainer to review and approve the proposed (committed) changes in the branch. GitHub automatically makes a pull request if you make a change on a branch that you don't own. After the maintainer merges the pull request, the changes in the branch will be reflected in the main branch. Similarly, if you have maintainer access, you will receive pull request from team members, and review and approve their requests. Since the log files are immutable, it's always possible to find the person who approved the merge of the change.
 
 When the two streams of work are ready to merge, each branch's code is identified as a (feature) tip, and the two tips are merged into a third combined branch.
 
@@ -93,7 +93,7 @@ When the two streams of work are ready to merge, each branch's code is identifie
 	- `git branch` lists branches
 	- `git branch <new-branch>` creates a new branch
 	- `git branch -d <branch-name>` deletes a branch (to delete a branch, first use `git checkout` and then run this command to delete the branch locally) 
-- `git checkout` enables you to swtich to between existing branches.
+- `git checkout` enables you to switch to between existing branches.
 	- `git checkout main` switches your current branch to the main branch
 - `git remote` lists the names of all remote repositories associated with your local repository.
 - `git merge` lets you to put everything back together again and merge the feature branch with the main branch.
@@ -111,7 +111,7 @@ Remote repositories are those stored elsewhere, on the internet, on your network
 
 Developers use the terms upstream and origin when talking about remote repos. Origin generally refers to your fork, and upstream refers to the original work. But these are merely the norms.
 
-Forking allows you to modify or extend a project without affecting the original project. Frequently, this is used to take an existing project and make it the starting point for your new project. You can also use forking to submit back changes into the orignial repository. To keep a fork in sync with the orignial work from a local clone, first create a local clone of the project. To configure git to sync the fork, open a terminal and change to the directory containing the clone. Typing `git remote -v` gives you the remote repository. Typing `git remote add upstream <clone directory>`. Adding upstream adds the original repository as a new repote repository labelled upstream.
+Forking allows you to modify or extend a project without affecting the original project. Frequently, this is used to take an existing project and make it the starting point for your new project. You can also use forking to submit back changes into the original repository. To keep a fork in sync with the original work from a local clone, first create a local clone of the project. To configure git to sync the fork, open a terminal and change to the directory containing the clone. Typing `git remote -v` gives you the remote repository. Typing `git remote add upstream <clone directory>`. Adding upstream adds the original repository as a new remote repository labelled upstream.
 
 ## Managing a GitHub Project
 As mentioned above, GitHub is a popular platform for version control and project management. Managing GitHub projects enables effective collaboration and project organization. Multiple roles are involved in managing a project, a developer, an integrator and a repository administrator.
@@ -119,6 +119,3 @@ As mentioned above, GitHub is a popular platform for version control and project
 An integrator receives changes made by others, reviews and responds to pull requests, and publishes the result for others to use.
 
 A repository administrator structures repository organization and interaction. They also manage communities, asset types, relationships, categories and attributes. A repository administrator sets up and maintains access to the repository for developers. They also configure the servers needed for accessing the web services and documentation, define email and index settings, and manage the look and feel of the application. Repository admins can use GitHub actions to automate software workflows including CI/CD.
-
-## Useful Links
-
