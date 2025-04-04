@@ -1,6 +1,4 @@
 # Introduction to Software Development
-
-
 ## Pair Programming
 
 Pair programming is an extension of teamwork where two developers work side-by-side at 
@@ -158,3 +156,47 @@ The MEAN stack uses a MongoDB database with an Express.js web application server
 	- However, because Linux is an integral part of the stack, it's only available on Linux and thus less flexible.
 	- Not suitable for non-relational data
 	- Another disadvantage is that the back-end runs on PHP, Perl or Python, wherease the front-end uses JavaScript and HTML, making it harder for developers to switch back and forth.
+
+# Introduction to Programming
+## Programming Languages
+Programming languages help us to tell computers what to do. Computers use their own language, called machine code. Machines understand binary code, that is, 1s and 0s. To make communicating wit computers easier, we have human-readable programming languages.
+
+Programming languages can be classified as high-level and low-level. High-level programming languages are more sophisticated, use common English to increase the speed of coding and debugging. Examples of high-level programming languages include query languages such as SQL, structured programming language such as Pascal, and object-oriented languages such as Python.
+
+In contrast, low-level programming languages use a set of symbols to represent machine code. Examples include assembly language, such as ARM, MIPS and x86.
+
+
+### Interpreted Languages
+Interpreted language is also commonly referred to as scripted or scripting language. Programs written in interpreted or scripted language, like Python and HTML, run through the programming interpreter on your computer's operating system or in your web browser. The interpreter takes the human-readable scripted code and then translates it into machine code, enabling the computer to complete the requested task.
+
+All interpreted languages need an interpreter to translate the source code. Translators are built into your web browser or they require a program on your computer to translate the code. 
+
+Common interpreted languages are:
+
+- JavaScript, a simple scripting language that runs through the web browser interpreter
+- Python, a language that is popular because it is easy to learn and use for developers
+- Lua, a general purpose, lighweight game scripting language that is easy to learn and use
+- HTML, a markup language used for formatting web pages
+
+### Compiled Languages
+Another category of programming languages is the compiled languages. Compiled programs are applications and programs, like your music app or your operating systems, that you run on your computer or device. The programs are packaged, or compiled, into one executable file. They are usually larger programs. Compiled programs are used to solve more challenging problems, like interpreting source code.
+
+A compiler program creates a program file, which runs the software. Simply put, it piles the code into one file that runs when you double-click on the app on your device. Compiled programs run faster because they are installed on the device. The source code is converted from the programming language to machine code and then compiled into one executable file.
+
+Examples of compiled languages are:
+
+- C, C++ and C#, which are used in many operating systems, like Microsoft Windows, Apple's MacOS, and the open-source operating system Linux
+- Java, which works well across platforms, such as AndroidOS
+
+### Query Languages
+A query is a request for information from a database, which handles the query, searches for the information requested, and returns the result to the quering entity. By far the most prevalent query language for database queries and database management is SQL. Other query languages include AQL, CQL, Datalog and DMX. 
+
+There is another type of database called NoSQL, which stands for Not Only SQL. The key difference is the data structure. While SQL databases are relational and use structured, predefined schemas, NoSQL databases are non-relational and have dynamic schemas for unstructured data.
+
+### Assembly Languages
+Assembly languages are less sophisticated than high-level languages. They use a simple set of symbols to represent the 0s and 1s of machine code. Assembly languagegs are closely tied to the processor architecture from hardware manufactures, and therefore, each CPU type typically has its own aseembly language. Assembly languages use a simple, readable format for their statements, and they are entered one line at a time with one statement per line.
+
+Assembly languages are translated using an assembler instead of a compiler or interpreter, and one statement translates into just one machine code instruction.
+
+## Code Organization
+There are two main methods of organizing code, flowcharts and pseudocode.
