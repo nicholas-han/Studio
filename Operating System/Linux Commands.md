@@ -1,4 +1,4 @@
-# Introduction to Linux Commands
+# Linux Commands
 A shell is a powerful user interface for Unix-like operating systems. It can interpret commands and run other programs. A shell, which enables access to files, utilities, and applications, is also an interactive language. A shell is also a scripting language. And it can also be used to automate tasks.
 
 The default shell on Linux is usually Bash. Other shells include `sh` "Bourne shell", `ksh` "Korn shell", `tcsh` "TC shell", `zsh` "Z shell" and `fish`. Bash shell stands for "bourne again shell". To find out what the default is, enter "printenv SHELL" in the command line, and it returns the path to the default shell program. If the default shell is not bash, you can always switch to it simply by entering "bash" on the command line.
