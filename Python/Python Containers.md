@@ -1,8 +1,14 @@
 # Python Containers
 You may find Python documentation pages on [data structures](https://docs.python.org/2/tutorial/datastructures.html) and [collections](https://docs.python.org/2/library/collections.html) useful.
 
-## Tuple
+Containers are compound data types and are one of the key types of data structure in Python.
 
+## Tuple
+Tuples are an ordered sequence. Different types such as int, float and string can be all contained in one single tuple. Each element of a tuple can be accessed via an index. 
+
+Tuples can be concatenated using `+` oeprator; tuples can also be sliced using regular array indexing. Tuples are immutable, meaning you cannot change the value of a given element of a tuple. Tuples can be nested, meaning the elements of a tuple can be tuples.
+
+Assigning a tuple to a new tuple simply creates a reference alias of the original tuple.
 
 
 ### Named Tuple
@@ -30,11 +36,18 @@ person1 = person1._replace(**args)
 ```
 
 ## List
+Lists, like Tuples, are also an ordered sequence. Lists, unlike Tuples, are mutable. List concatenation can be achieved using `+` operator, `<list>.extend(args)`, whereas `<list>.append(args)` will add a single element `args` to the list. `del(<list>[0])` removes the 0th element in the list. `<str>.split(arg_delim)` splits a string into a list of substrings separated by the delimiter.
 
+Assigning a list to a new list simply creates a reference alias of the original list.
 
-
+```python
+A = [1, 2, "hello"]
+B = A # B is an alias of A
+B = A[:] # B is an independent copy of A
+```
 
 ## Dictionary
+A dictionary has keys and values. The key is analogous to the index; they are like addresses but don't have to be integers, usually characters. The keys of a dictionary are immutable and unique. `<dict>.keys()` returns all keys, same for values.
 
 
 ### Counter
@@ -93,7 +106,6 @@ OrderedDict([('Chemistry', 64), ('Physics', 82), ('English', 140), ('Chinese', 1
 ```
 
 Member function `OrderedDict.popitem()` deletes the last (or the first if argument last=False) element by reference and returns the item deleted.
-
 ```python
 >>> myDict.popitem()
 ('Math', 146)
@@ -103,3 +115,6 @@ Member function `OrderedDict.popitem()` deletes the last (or the first if argume
 ```
 
 ## Set
+Like lists and tuples, sets can take different data types. Sets are unordered and only have unique elements. Set definition uses `{}` with elements separate by comma.
+
+`<set>.add()` and `<set>.remove()` are used to add and remove elements. Operator `&`, `<set1>.union(<set2>)` and `<set1>.issubset(<set2>)` are used for intersection, union and subset respectively.
