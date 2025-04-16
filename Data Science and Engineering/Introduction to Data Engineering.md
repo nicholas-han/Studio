@@ -411,4 +411,150 @@ There are a significant number of vendors who are offering cloud-based Integrati
 The data integration space continues to evolve as businesses embrace newer technologies and as data grows, be it in the variety of sources or its use in business decision-making.
 
 ## Big Data Platforms
+### Foundations of Big Data
+In this digital world, everyone leaves a trace. From our travel habits to our workouts and entertainment, the increasing number of internet connected devices that we interact with on a daily basis record vast amounts of data about us. There’s even a name for it: Big Data. Ernst and Young offers the following definition: “Big Data refers to the dynamic, large and disparate volumes of data being created by people, tools, and machines. It requires new, innovative, and scalable technology to collect, host, and analytically process the vast amount of data gathered in order to derive real-time business insights that relate to consumers, risk, profit, performance, productivity management, and enhanced shareholder value.”
 
+There is no one definition of Big Data, but there are certain elements that are common across the different definitions, such as velocity, volume, variety, veracity, and value. These are the V's of Big Data.
+
+- Velocity is the speed at which data accumulates. Data is being generated extremely fast, in a process that never stops. Near or real-time streaming, local, and cloud-based technologies can process information very quickly.
+- Volume is the scale of the data, or the increase in the amount of data stored. Drivers of volume are the increase in data sources, higher resolution sensors, and scalable infrastructure.
+- Variety is the diversity of the data. Structured data fits neatly into rows and columns, in relational databases while unstructured data is not organized in a pre-defined way, like Tweets, blog posts, pictures, numbers, and video. Variety also reflects that data comes from different sources, machines, people, and processes, both internal and external to organizations. Drivers are mobile technologies, social media, wearable technologies, geo technologies, video, and many, many more.
+- Veracity is the quality and origin of data, and its conformity to facts and accuracy. Attributes include consistency, completeness, integrity, and ambiguity. Drivers include cost and the need for traceability. With the large amount of data available, the debate rages on about the accuracy of data in the digital era. Is the information real, or is it false?
+- Value is our ability and need to turn data into value. Value isn't just profit. It may have medical or social benefits, as well as customer, employee, or personal satisfaction. The main reason that people invest time to understand Big Data is to derive value from it.
+
+Let's look at some examples of the V's in action.
+- Velocity: Every 60 seconds, hours of footage are uploaded to YouTube which is generating data. Think about how quickly data accumulates over hours, days, and years.
+- Volume: The world population is approximately seven billion people and the vast majority are now using digital devices; mobile phones, desktop and laptop computers, wearable devices, and so on. These devices all generate, capture, and store data -- approximately 2.5 quintillion bytes every day. That's the equivalent of 10 million Blu-ray DVD's.
+- Variety: Let's think about the different types of data; text, pictures, film, sound, health data from wearable devices, and many different types of data from devices connected to the Internet of Things. 
+- Veracity: 80% of data is considered to be unstructured and we must devise ways to produce reliable and accurate insights. The data must be categorized, analyzed, and visualized.
+
+Data Scientists today derive insights from Big Data and cope with the challenges that these massive data sets present. The scale of the data being collected means that it’s not feasible to use conventional data analysis tools. However, alternative tools that leverage distributed computing power can overcome this problem. Tools such as Apache Spark, Hadoop and its ecosystem provide ways to extract, load, analyze, and process the data across distributed compute resources, providing new insights and knowledge. This gives organizations more ways to connect with their customers and enrich the services they offer.
+
+### Big Data Processing Tools
+The Big Data processing technologies provide ways to work with large sets of structured, semi-structured, and unstructured data so that value can be derived from big data. Here we are going to talk about three open source technologies, ApacheHadoop, Apache Hive, and Apache Spark, and the role they play in big data analytics.
+
+#### Hadoop
+Hadoop is a collection of tools that provides distributed storage and processing of big data. Hive is a data warehouse for data query and analysis built on top of Hadoop. Spark is a distributed data analytics framework designed to perform complex data analytics in real-time. Hadoop, a java-based open-source framework, allows distributed storage and processing of large datasets across clusters of computers. In Hadoop distributed system, a node is a single computer, and a collection of nodes forms a cluster. Hadoop can scale up from a single node to any number of nodes, each offering local storage and computation. Hadoop provides a reliable, scalable, and cost-effective solution for storing data with no format requirements. Using Hadoop, you can: Incorporate emerging data formats, such as streaming audio, video, social media sentiment, and clickstream data, along with structured, semi-structured, and unstructured data not traditionally used in a data warehouse. Provide real-time, self-service access for all stakeholders. Optimize and streamline costs in your enterprise data warehouse by consolidating data across the organization and moving “cold” data, that is, data that is not in frequent use, to a Hadoop-based system.
+
+##### Hadoop Distributed File System (HDFS)
+One of the four main components of Hadoop is Hadoop Distributed File System, or HDFS, which is a storage system for big data that runs on multiple commodity hardware connected through a network. HDFS provides scalable and reliable big data storage by partitioning files over multiple nodes. It splits large files across multiple computers, allowing parallel access to them. Computations can, therefore, run in parallel on each node where data is stored. It also replicates file blocks on different nodes to prevent data loss, making it fault-tolerant. Let’s understand this through an example. Consider a file that includes phone numbers for everyone in the United States; the numbers for people with last name starting with A might be stored on server 1, B on server 2, and so on. With Hadoop, pieces of this phonebook would be stored across the cluster. To reconstruct the entire phonebook, your program would need the blocks from every server in the cluster. HDFS also replicates these smaller pieces onto two additional servers by default, ensuring availability when a server fails, In addition to higher availability, this offers multiple benefits. It allows the Hadoop cluster to break up work into smaller chunks and run those jobs on all servers in the cluster for better scalability. Finally, you gain the benefit of data locality, which is the process of moving the computation closer to the node on which the data resides. This is critical when working with large data sets because it minimizes network congestion and increases throughput. Some of the other benefits that come from using HDFS include: Fast recovery from hardware failures, because HDFS is built to detect faults and automatically recover. Access to streaming data, because HDFS supports high data throughput rates. Accommodation of large data sets, because HDFS can scale to hundreds of nodes, or computers, in a single cluster. Portability, because HDFS is portable across multiple hardware platforms and compatible with a variety of underlying operating systems.
+
+##### Hive
+Hive is an open-source data warehouse software for reading, writing, and managing large data set files that are stored directly in either HDFS or other data storage systems such as Apache HBase. Hadoop is intended for long sequential scans and, because Hive is based on Hadoop, queries have very high latency—which means Hive is less appropriate for applications that need very fast response times. Also, Hive is read-based, and therefore not suitable for transaction processing that typically involves a high percentage of write operations. Hive is better suited for data warehousing tasks such as ETL, reporting, and data analysis and includes tools that enable easy access to data via SQL.
+
+##### Spark
+Spark is a general-purpose data processing engine designed to extract and process large volumes of data for a wide range of applications, including Interactive Analytics, Streams Processing, Machine Learning, Data Integration, and ETL. It takes advantage of in-memory processing to significantly increase the speed of computations and spilling to disk only when memory is constrained. Spark has interfaces for major programming languages, including Java, Scala, Python, R, and SQL. It can run using its standalone clustering technology as well as on top of other infrastructures such as Hadoop. And it can access data in a large variety of data sources, including HDFS and Hive, making it highly versatile. The ability to process streaming data fast and perform complex analytics in real-time is the key use case for Apache Spark.
+
+## Data Platforms, Data Stores and Security
+### Data Platform Architecture
+!["Data Platform Architecture"](Data Platform Architecture.jpeg)
+Here we talk about the layers of a data platform architecture. A layer represents functional components that perform a specific set of tasks in the data platform. The layers that we’re going to explore, include: Data Ingestion or Data Collection Layer, Data Storage and Integration Layer, Data Processing Layer, and Analysis and User Interface Layer. We will also learn about the Data Pipeline Layer, which overlays multiple layers.
+
+#### Data Collection Layer
+The Data Collection Layer is responsible for connecting to the source systems and bringing the data from these systems into the data platform. This layer performs the following key tasks: 
+- Connect to data sources.
+- Transfer data from these data sources to the data platform in streaming, batch, or both modes.
+- Maintain information about the data collected in the metadata repository. For example, how much data was ingested in a batch, data source, and other descriptive information.
+
+Google Cloud DataFlow, IBM Streams, IBM Streaming Analytics on Cloud, Amazon Kinesis, and Apache Kafka are some of the tools used for data ingestion, supporting both batch and streaming modes.
+
+#### Data Storage and Integration Layer
+Once data is ingested, it needs to be stored and integrated. The Storage and Integration layer in a data platform needs to:
+
+- Store data for processing and long-term use.
+- Transform and merge extracted data, either logically or physically.
+- Make data available for processing in both streaming and batch modes.
+
+The storage layer needs to be reliable, scalable, high-performing, and also cost-efficient. 
+
+BM DB2, Microsoft SQL Server, MySQL, Oracle Database, and PostgreSQL are some of the popular relational databases. Cloud-based relational databases, also referred to as Database-as-a-Service, have gained great popularity over the recent years. Such as IBM DB2 on Cloud, Amazon Relational Database Service (RDS), and Google Cloud SQL, and SQL Azure. In the NoSQL, or non-relational database systems on the cloud, we have IBM Cloudant, Redis, MongoDB, Cassandra, and Neo4J. Tools for integration include IBM’s Cloud Pak for Data and Cloud Pak for Integration; Talend’s Data Fabric and Open Studio.
+
+Open-source tools such as Dell Boomi and SnapLogic are also very popular integration tools. There are a number of vendors offering cloud-based Integration Platform as a Service (or iPaaS). For example, Adeptia Integration Suite, Google Cloud's Cooperation 534, IBM's Application Integration Suite on Cloud, and Informatica's Integration Cloud.
+
+#### Data Processing Layer
+Once the data has been ingested, stored, and integrated, it needs to be processed. Data validations, transformations, and applying business logic to the data are some of the things that need to happen in this layer. The processing layer should be able to:
+
+- Read data in batch or streaming modes from storage and apply transformations.
+- Support popular querying tools and programming languages.
+- Scale to meet the processing demands of a growing dataset.
+- Provide a way for analysts and data scientists to work with data in the data platform.
+
+Some of the transformation tasks that occur in this layer include:
+
+- Structuring, essentially, actions that change the form and schema of the data. This change may be as simple as changing the order of fields within a record or dataset or as complex as combining fields into complex structures using joins and unions.
+- Normalization, which focuses on cleaning the database of unused data and reducing redundancy and inconsistency.
+- Denormalization, which combines data from multiple tables into a single table so that it can be queried more efficiently for reporting and analysis.
+- Data Cleaning, which fixes irregularities in data to provide credible data for downstream applications and uses.
+
+There are a host of tools available for performing these transformations on data, selected based on the data size, structure, and specific capabilities of the tool. Such as spreadsheets, OpenRefine, Google DataPrep, Watson Studio Refinery, and Trifacta Wrangler. Python and R also offer several libraries and packages that are explicitly created for processing data.
+
+It’s important to note that storage and processing may not always be performed in separate layers. For example, in relational databases, storage and processing can occur in the same layer, while in Big Data systems, data can be first stored in the Hadoop File Distribution System, or HDFS, and then processed in a data processing engine like Spark. And, the data processing layer can also precede the data storage layer, where transformations are applied before the data is loaded, or stored, in the database.
+
+#### Analysis and User Interface Layer
+The Analysis and User Interface Layer delivers processed data to data consumers. Data consumers can include: Business Intelligence Analysts and business stakeholders who consume this data through interactive visual representations, such as dashboards and analytical reports. Data Scientists and Data Analytics that further process this data for specific use cases. Other applications and services that may need this data as input for further use.
+
+The Analysis and UI Layer needs to support: Querying tools and programming languages. For example, SQL for querying relational databases and SQL-like querying tools for non-relational databases, such as CQL for Cassandra, Programming languages such as Python, R, and Java, APIs that can be used to run reports on data for both online and offline processing. APIs that can consume data from the storage in real-time for use in other applications and services. Dashboarding and Business Intelligence applications. For example, IBM Cognos Analytics, Tableau, Jupyter Notebooks, Python and R libraries, and Microsoft Power BI.
+
+#### Data Pipeline Layer
+Overlaying the Data Ingestion, Data Storage and Integration, and Data Processing layers is the Data Pipeline layer with the Extract, Transform, and Load tools. This layer is responsible for implementing and maintaining a continuously flowing data pipeline. There are a number of data pipeline solutions available, most popular among them being Apache Airflow and DataFlow.
+
+### Data Stores
+A data store, or data repository, is a general term used to refer to data that has been collected, organized, and isolated so that it can be used for business operations or mined for reporting and data analysis. A repository can be a database, data warehouse, data mart, big data store, or a data lake. A well-designed data repository is essential for building a system that is scalable and capable of performing during high workloads. We will look at some of the primary considerations for designing a data store, such as: The type of data you want to store Volume of data Intended use of data Storage considerations And Privacy, security, and governance needs of your organization.
+
+There are multiple types of databases and selecting the right one is a crucial part of designing. A database is essentially a collection of data designed for the input, storage, search and retrieval, and modification of data.
+
+Depending on the type of data, databases can be categorized in two primary ways, relational and non-relational. Relational databases, or RDBMSs, are best used for structured data, which has a well-defined schema and can be organized into a tabular format. Non-relational databases, or NoSQL, are best for semi-structured and unstructured data, that is, schema-less and free-form data. Non-relational databases, based on the type of data and how you want to query the data, are of four different types—key-value, document, column, and graph-based. If you're looking to run complex search queries and multi-operation transactions, for example, a document-based database may not be the best option for you. Like you would not opt for a graph-based database if you need to process high-volume transactions because graph-based databases are not optimized for large-volume analytics queries. Another important consideration that goes into the design of a data store is the volume, or scale, of data. When you require to store large volumes of raw data in its native format, straight from its source, a data lake would be the appropriate choice for you. With a data lake, you can store both relational and non-relational data at scale without defining the data's structure and schema. Or when you're dealing with Big Data, that is data that is not only high-volume but also high-velocity, of diverse types, and needs distributed processing for fast analytics, then a big data repository would be an option you would explore. Big data stores split large files across multiple computers allowing parallel access to them. Computations run in parallel on each node where data is stored. How you intend to use the data you are collecting is also an important consideration for the choice and design of a data store.
+
+The number of transactions, frequency of updates, type of operations performed on the data, response time, and backup and recovery requirements all need to be provisioned for in the design of a data store. Whether you need to use the data store for recording high-volume transactional data or executing complex queries for analytical purposes, your processing and storage needs will differ. Transactional systems, that is systems used for capturing high-volume transactions, need to be designed for high-speed read, write, and update operations. Analytical systems, on the other hand, need complex queries to be applied to large amounts of historical data aggregated from transactional systems. They need faster response times to complex queries. Schema design, indexing, and partitioning strategies have a big role to play in performance of systems based on how data is getting used. The intended use of data also drives scalability as a design consideration. Scalability of a data store is its capability to handle growth in the amount of data, workloads, and users. Normalization of the database is another important consideration at the design stage. Normalization is the process of efficiently organizing data in a database. Done right, it helps in the optimal use of storage space, makes database maintenance easier, and provides faster access to data. Normalization is important for systems that handle transactional data. But for systems designed for handling analytical queries, normalization can lead to performance issues.
+
+Some key design considerations from the perspective of storage are Performance, Availability, Integrity, and Recoverability of Data.
+
+- Performance parameters include throughput and latency. That is, the rate at which information can be read from and written to the storage and the time it takes to access a specific location in storage.
+- Availability - Your storage solution must enable you to access your data when you need it, without exception. There should be no downtime.
+- Integrity - Your data must be safe from corruption, loss, and outside attack.
+- Recoverability - Your storage solution should ensure that you can recover your data in the event of failures and natural disasters.
+
+A secure data strategy is a layered approach. It includes access control, multizone encryption, data management, and monitoring systems. Regulations such as GDPR, CCPA and HIPAA restrict the ownership, use and management of personal and sensitive data. Data needs to be made available through controlled data flow and data management by using multiple data protection techniques. This is an important part of a data store design. Strategies for data privacy, security, and governance regulations need to be a of a data store's design from the start. Done at a later stage it results in patchwork.
+
+### Security
+Enterprise level data platforms and data repositories need to tackle security at multiple levels. Here we will learn about the various facets of security as it applies to data platforms and data life cycle management, including physical infrastructure security, network security, application security and data security.
+
+The three key components to creating an effective strategy for information security in general are popularly referred to as the CIA triad. The "C" in this triad stands for confidentiality through controlling unauthorized access, "I" for integrity through validating that your resources are trustworthy and have not been tampered with, and "A" is for availability by ensuring authorized users have access to resources when they need it. The CIA triad is applicable to all facets of security, be it infrastructure network application or data security.
+
+The four different facets or levels of security are as follows. The first level is physical infrastructure security, a key component of security for an it system is the security of the physical infrastructure and facilities that house the system. In the case of cloud computing, this extends to the cloud service providers infrastructure and facilities. Some of the measures that are taken to ensure physical infrastructure security include
+
+- Access to the perimeter of the facility based on authentication
+- Round-the-clock surveillance for entry and exit points
+- Multiple power feeds from independent utility providers with dedicated generators and ups battery backup
+- Heating and cooling mechanisms for managing the temperature and humidity levels in the facility
+- Factoring in environmental threats before considering the location of the facility (for example infrastructure facilities are never housed in flood plains; in areas prone to earthquakes the infrastructure is housed in an earthquake-resistant structure; multi-level lightning protection and earthing systems are also installed in such facilities)
+
+
+The next level is network security. Network security is vital to keep interconnected systems and data safe network security solutions include
+
+- Firewalls to prevent unauthorized access to private networks that are connected to the internet
+- Network access control to ensure endpoint security by allowing only authorized devices to connect to the network (for example a corporate network may not allow devices with outdated service packs to connect to their network)
+- Network segmentation to create silos or virtual local area networks within a network so that you can segregate your assets into individual silos based on the level of security required for different assets
+- Security protocols to ensure attackers cannot tap into data while it is in transit
+- Intrusion detection and intrusion prevention systems that inspect incoming traffic for intrusion attempts and vulnerabilities
+
+The third dimension of security is application security. Application security is critical for keeping customer data private and ensuring applications are fast and responsive. Security needs to be built into the foundation of an application in order to prevent other applications and services from introducing vulnerabilities. The following security engineering practices ensures application safety:
+
+- Threat modeling to identify relative weaknesses and attack patterns related to the application
+- Secure design that mitigates risks
+- Secure coding guides and practices that prevent vulnerabilities
+- Security testing to fix problems before the application is deployed and to validate that it is free from known security issues
+
+The fourth and final dimension is data security data is either at rest in storage or in transit between systems applications services and workloads, be it at rest or in motion data needs to be protected. One of the primary controls for data security is to enable access to data through a system of authentication and authorization. Authentication systems verify that  you are who you say you are and they accomplish this using passwords, tokens, biometrics or a combination of these. Authorization ensures that users access information based on their roles and the privileges assigned to their roles.
+
+Data at rest includes files, objects and storage. This type of data is stored physically such as in a database, data warehouse, tapes, off-site backups and mobile devices. Organizations can use encryption to fight threats to their data at rest, encrypting data protects information from disclosure even if that information is lost or intercepted. Data that is moving from one place to another such as when it is transmitted over the internet is referred to as data in transit or data in motion. Encryption methods such as https, SSL and TLS are often used to protect data in motion. It is vital to proactively monitor, track and react to security violations in time, and for that you need End-to-end visibility and integration of security processes and tools throughout the enterprise. Security monitoring and intelligence systems create a complete audit history for triage and compliance purposes, and provide reports and alerts that help enterprises react to security violations in time.
+
+## Data Collection and Data Wrangling
+
+
+
+## Querying Data, Performance Tuning and Troubleshooting
+
+
+
+## Governance and Compliance
