@@ -7,6 +7,20 @@ There are five Categories of SQL Commands
 
 1. Data Definition Language (DDL): CREAT/DROP/ALTER/TRUNCATE
 2. Data Query Language (DQL): SELECT
-3. Data Manipulation Language (DML): INSERT/UPDATE/DELETE/CALL LOCK
-4. Data Control Language (DCL): GRANT/REVOKE
+3. Data Manipulation Language (DML): INSERT/(SELECT)/UPDATE/DELETE/CALL LOCK
+	- CRUD operations: create, read, update and delete
+4. Data Control Language (DCL): GRANT/REVOKE 
 5. Transaction Control Language (TCL): COMMIT/SAVEPOINT/ROLLBACK/SET TRANSACTION/SET CONSTRAINT
+
+## Normalization
+
+### Normalization Rules
+1. First Normal Form: each row must be unique, and each cell must contain only a single value (e.g. never a list)
+2. Second Normal Form: create separate tables for sets of values
+3. Third Normal Form: eliminate columns that don't depend on the key
+
+Other normalization rules include Boyce-Codd Normal Form (BCNF), Fourth Normal Form and Fifth Normal Form.
+
+In transactional systems (OLTP), where data is both read and written frequently, you typically normalize the data to 3NF. OLTP systems need to process and store transactions as well as query transactional data, and normalizing the data to 3NF helps the database to process and store individual transactions efficiently.
+
+In analytical OLAP systems, where users primarily read data, databases prioritize read performance over write integrity. Hence, the data may have undergone some denormalization to a lower normal form before being loaded into the analytical system, such as a data warehouse. In data warehousing, data engineers focus on performance, which can benefit from having fewer tables to process.
