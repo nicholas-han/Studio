@@ -15,8 +15,11 @@ There are five Categories of SQL Commands
 ## Normalization
 
 ### Normalization Rules
-1. First Normal Form: each row must be unique, and each cell must contain only a single value (e.g. never a list)
-2. Second Normal Form: create separate tables for sets of values
+1. First Normal Form:
+	- The table has unique rows
+	- The table has atomic values (each cell contain only a single value, not a list
+2. Second Normal Form:
+	- The table does not contain partial dependencies (one should create separate tables for different sets of values)
 3. Third Normal Form: eliminate columns that don't depend on the key
 
 Other normalization rules include Boyce-Codd Normal Form (BCNF), Fourth Normal Form and Fifth Normal Form.
