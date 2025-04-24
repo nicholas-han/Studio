@@ -11,5 +11,5 @@
 		- Hierarchical Clustering: Agglomerative Clustering, Divisive Clustering
 		- Density-Based Clustering: DBSCAN, OPTICS
 	- Dimesion Reduction: PCA
-	- Densiity Estimation
+	- Density Estimation
 	- Market Basket Analysis
