@@ -13,6 +13,7 @@
 \usepackage[dvipsnames]{xcolor}
 \usepackage{tcolorbox}
 \usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
 \usepackage{tikz}
 
 \newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
@@ -48,8 +49,7 @@
 		\\ [2.0cm]
 		\HRule{1.5pt} \\
 		\LARGE \textbf{\uppercase{Linear Algebra}
-		\HRule{2.0pt} \\ [0.6cm] \vspace*{10\baselineskip}}
-		}
+		\HRule{2.0pt} \\ [0.6cm] \vspace*{10\baselineskip}}}
 
 \date{}
 \author{\textbf{Author:} Nicholas Han \\ Shenyang 2025}
@@ -81,15 +81,14 @@
         a_{s1}x_1+a_{s2}x_2&+...+a_{sn}x_n=b_s\\
     \end{split}
     \end{equation}
-    where \(a_{11}, a_{12}, ..., a_{sn}\) are \textbf{coefficients}, and \(b_1, b_2, ..., b_s\) are \textbf{constants}. And the number of equations \textbf{s} can be equal to, greater than or smaller than the number of variables \textbf{n}.
+    where \(a_{11}, a_{12}, ..., a_{sn}\) are \textbf{coefficients}, and \(b_1, b_2, ..., b_s\) are \textbf{constants}. And the number of equations \textbf{s} can be equal to, greater than, or less than the number of variables \textbf{n}.
 \end{definition}
 
 \begin{definition}[Solutions to a System of Linear Equations]
-If there exist \(c_1, c_2, ..., c_n\) which can be plugged into \(x_1, x_2, ..., x_n\) so that the linear equations in (\ref{def_lin_eqn}) hold true, the ordered list of \((c_1, c_2, ..., c_n)\) is called a \textbf{solution} to the system of linear equations. The set of all solutions is called the \textbf{solution set}.
+If there exist \(c_1, c_2, ..., c_n\) that can be plugged into \(x_1, x_2, ..., x_n\) so that the linear equations in (\ref{def_lin_eqn}) hold, the ordered list of \((c_1, c_2, ..., c_n)\) is called a \textbf{solution} to the system of linear equations. The set of all solutions is called the \textbf{solution set}.
 \end{definition}
 
 \subsection{The Geometry of Linear Equations}
-\subsubsection{Analytic Geometry (Row Representation)}
 Suppose we have a system of 2 linear equations with 2 variables.
     \begin{equation}\label{ex_lin_eqn}
     \begin{split}
@@ -97,7 +96,8 @@ Suppose we have a system of 2 linear equations with 2 variables.
     -x+2y&=3
     \end{split}
     \end{equation}
-Each linear equation represents a line in the xy-plane, and the intersection of the 2 lines (if there is one) represents the solution (in this case the only one) to the system of equations, which is \(x=1\), \(y=2\).
+\subsubsection{Geometric Representation (by Rows)}
+Each linear equation represents a line in the xy plane, and the intersection of the 2 lines (if there is one) represents the solution (in this case the only solution) to the system of equations, which is \(x=1\), \(y=2\).
 
 \begin{center}
 \begin{tikzpicture}
@@ -112,11 +112,10 @@ Each linear equation represents a line in the xy-plane, and the intersection of 
 \end{tikzpicture}
 \end{center}
 
-This the representation of linear equations when studying analytic geometry in high school.
+This representation of linear equations corresponds to that of analytic geometry that we studied in high school.
 
-
-\subsubsection{Vectors (Column Representation)}
-\begin{definition}[Column Vector] [TBD] A column vector $\vec{x}$ consisting of \textbf{m} elements is denoted as
+\subsubsection{Vector Representation (by Columns)}
+\begin{notation}[Column Vector] A column vector $\vec{x}$ consisting of \textbf{m} elements is denoted as
 \begin{center}
     \begin{equation}\label{col_vec}
     \begin{split}
@@ -124,39 +123,91 @@ This the representation of linear equations when studying analytic geometry in h
     \end{split}
     \end{equation}
 \end{center}
-\end{definition}
+\end{notation}
+
+We can thus rewrite the linear equations in (\ref{ex_lin_eqn}) by turning the coefficients into column vectors.
+\begin{center}
+\begin{equation}
+    x \begin{bmatrix} \phantom{-} 2 \\ -1 \end{bmatrix} + y \begin{bmatrix} -1 \\ \phantom{-} 2 \end{bmatrix} = \begin{bmatrix} 0 \\ 3 \end{bmatrix}
+\end{equation}
+\end{center}
+
+We want to find numbers $x$ and $y$ so that $x$ copies of vector $\begin{bmatrix} \phantom{-} 2 \\ -1 \end{bmatrix}$ added to $y$ copies of vector $\begin{bmatrix} -1 \\ \phantom{-} 2 \end{bmatrix}$ equals to $\begin{bmatrix} 0 \\ 3 \end{bmatrix}$.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.5]
+    % Draw coordinate axes
+    \draw[->] (-2,0) -- (3,0) node[right] {$x$};
+    \draw[->] (0,-2) -- (0,3) node[above] {$y$};
+    
+    % Draw grid
+    \draw[gray!30] (-2,-2) grid (2.5,4);
+    
+    % Draw vectors
+    \draw[->, thick, blue] (0,0) -- (2,-1) node[midway, below] {$\vec{v}_1 = \begin{bmatrix} \phantom{-} 2 \\ -1 \end{bmatrix}$};
+    \draw[->, thick, red] (0,0) -- (-1,2) node[midway, below left] {$\vec{v}_2 = \begin{bmatrix} -1 \\ \phantom{-} 2 \end{bmatrix}$};
+    \draw[->, thick, green!50!black] (0,0) -- (0,3) node[midway, right] {$\vec{v}_3 = \begin{bmatrix} 0 \\ 3 \end{bmatrix}$};
+    \draw[->, densely dashed, red] (2,-1) -- (1,1) node[midway, above right] {$\begin{bmatrix} -1 \\ \phantom{-} 2 \end{bmatrix}$};
+    \draw[->, densely dashed, red] (1,1) -- (0,3) node[midway, above right] {$\begin{bmatrix} -1 \\ \phantom{-} 2 \end{bmatrix}$};
+
+    % Add some points for reference
+    \foreach \x in {-2,-1,1,2}
+        \draw (\x,0.1) -- (\x,-0.1) node[below] {$\x$};
+    \foreach \y in {-2,-1,1,2}
+        \draw (0.1,\y) -- (-0.1,\y) node[left] {$\y$};
+\end{tikzpicture}
+\end{center}
+
+This representation of linear equations corresponds to that of vectors that we studied in high school.
 
 
-\begin{definition}[Linear Combination of Column Vectors]
-[TBD]
-\end{definition}
+\subsubsection{Matrix Representation}
+Taking one more step forward, we write the linear equations in (\ref{ex_lin_eqn}) as a single equation using matrices and vectors.
+
+\begin{center}
+\begin{equation}
+    \begin{bmatrix} \phantom{-} 2 -1 \\ -1 \phantom{-} 2 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 0 \\ 3 \end{bmatrix}
+\end{equation}
+\end{center}
+
+\begin{notation}[Matrix Representation]
+    Given the linear equations (\ref{def_lin_eqn}), we denote the \textbf{coefficient matrix} as matrix
+    $A = \begin{bmatrix}
+        a_{11} \ a_{12} & ... \ a_{1n} \\
+        a_{21} \ a_{22} & ... \ a_{2n} \\
+        ...... \\
+        a_{s1} \ a_{s2} & ... \ a_{sn} \\
+    \end{bmatrix}$. The vector $\textbf{x}=\begin{bmatrix}x_1 \\ x_2 \\ ... \\ x_n \end{bmatrix}$ is the vector of unknowns. The values on the RHS of the equations are denoted as $\textbf{b}=\begin{bmatrix}b_1 \\ b_2 \\ ... \\ b_n \end{bmatrix}$. Thus, we have $A\textbf{x}=\textbf{b}$.
+    
+    
+\end{notation}
 
 
 
 
 
-This the representation of linear equations when studying vectors high school.
 
 
-\subsection{Matrix Operations}
 
-This is a citation\cite{Eg}.
+
 
 \newpage
-
-
 \section{Vector Space}
-\begin{definition}[Binary Operation] Let \textbf{F} be a set. A binary operation is a function \textbf{F} x \textbf{F} $\rightarrow$ \textbf{F}.
+\begin{definition}[Binary Operation] Let $\mathbb{F}$ be a set. A binary operation is a function $\mathbb{F}$ $\times$ $\mathbb{F}$ $\rightarrow$ $\mathbb{F}$.
 \end{definition}
 \begin{example} Addition on real numbers is a binary operation.
 \end{example}
 
-\begin{definition}[Field] a Field is a set together with two binary operations \textbf{+} and \textbf{x}, such that the following properties hold:
-    \begin{enumerate}
-    \ $\forall \alpha, \beta \in \mathbb{F}, \alpha+\beta=\beta+\alpha$ (Commutativity)
-
-    \end{enumerate}
-
+\begin{definition}[Field] A Field $\mathbb{F}$ is a set together with two binary operations \textbf{addition} and \textbf{multiplication}, such that the following properties hold:
+    \begin{equation}
+    \begin{split}
+    & \forall \alpha, \beta \in \mathbb{F}, \ \alpha+\beta=\beta+\alpha \ (additive \ commutativity) \\
+    & \forall \alpha, \beta, \gamma \in \mathbb{F}, \ \alpha+(\beta+\gamma)=(\alpha+\beta)+\gamma \ (additive \ associativity) \\
+    & \forall \alpha, \beta \in \mathbb{F}, \alpha \cdot \beta = \beta \cdot \alpha \ (multiplicative \ commutativity) \\
+    & \forall \alpha, \beta, \gamma \in \mathbb{F}, \ \alpha \cdot (\beta \cdot \gamma)=(\alpha \cdot \beta) \cdot \gamma \ (multiplicative \ associativity) \\
+    & \forall \alpha, \beta, \gamma \in \mathbb{F}, \alpha \cdot (\beta + \gamma)=\alpha \cdot \beta + \alpha \cdot \gamma \ (distributivity) \\
+    \end{split}
+    \end{equation}
 \end{definition}
 
 % ------------------
