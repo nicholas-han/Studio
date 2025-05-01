@@ -4,6 +4,8 @@
 \usepackage{thmtools}
 \usepackage{graphicx}
 \usepackage{setspace}
+\usepackage{multicol}
+\usepackage{extarrows}
 \usepackage{geometry}
 \usepackage{float}
 \usepackage{hyperref}
@@ -21,11 +23,11 @@
 \newtheorem{axiom}{Axiom}[section] % a basic assumption about a mathematical situation
 \newtheorem{definition}{Definition}[section] % an explanation of the mathematical meaning of a word
 \newtheorem{notation}{Notation}[section] % an equivalent manifestation introduced to simplify mathematical writings
-\newtheorem{theorem}{Theorem}[section] % a statement that has been proven to be true
-\newtheorem{proposition}[theorem]{Proposition} % a less important but nonetheless interesting true statement
+\newtheorem{theorem}{Theorem}[theorem] % a statement that has been proven to be true
+\newtheorem{proposition}{Proposition}[theorem] % a less important but nonetheless interesting true statement
 \newtheorem{corollary}{Corollary}[theorem] % a true statment that is a simple deduction from a theorem or proposition
 \newtheorem{property}{Property}[theorem] % an obvious conclusion deducted from a theorem or proposition
-\newtheorem{lemma}[theorem]{Lemma} % a less important theorem that is helpful in proving other true statements
+\newtheorem{lemma}{Lemma}[theorem] % a less important theorem that is helpful in proving other true statements
 \newtheorem{conjecture}{Conjecture}[section] % a statement believed to be true, but not yet proved
 \newtheorem{example}{Example}[section]
 
@@ -160,7 +162,6 @@ We want to find numbers $x$ and $y$ so that $x$ copies of vector $\begin{bmatrix
 
 This representation of linear equations corresponds to that of vectors that we studied in high school.
 
-
 \subsubsection{Matrix Representation}
 Taking one more step forward, we write the linear equations in (\ref{ex_lin_eqn}) as a single equation using matrices and vectors.
 
@@ -170,6 +171,12 @@ Taking one more step forward, we write the linear equations in (\ref{ex_lin_eqn}
 \end{equation}
 \end{center}
 
+\begin{definition}
+    A table of s $\cdot$ n numbers displayed in the form of s rows and n columns is called an \textbf{s $\times$ n matrix}, with each number called an \textbf{element} or an \textbf{entry} of the matrix. \\
+    A matrix with all 0 entries is called a \textbf{zero matrix}. \\
+    A matrix with $s=n$ is called a \textbf{square matrix}; an m $\times$ m matrix is called a \textbf{square matrix of degree m}.
+\end{definition}
+
 \begin{notation}[Matrix Representation]
     Given the linear equations (\ref{def_lin_eqn}), we denote the \textbf{coefficient matrix} as matrix
     $A = \begin{bmatrix}
@@ -178,11 +185,57 @@ Taking one more step forward, we write the linear equations in (\ref{ex_lin_eqn}
         ...... \\
         a_{s1} \ a_{s2} & ... \ a_{sn} \\
     \end{bmatrix}$. The vector $\textbf{x}=\begin{bmatrix}x_1 \\ x_2 \\ ... \\ x_n \end{bmatrix}$ is the vector of unknowns. The values on the RHS of the equations are denoted as $\textbf{b}=\begin{bmatrix}b_1 \\ b_2 \\ ... \\ b_n \end{bmatrix}$. Thus, we have $A\textbf{x}=\textbf{b}$.
-    
-    
+    We can also write the coefficient vector \textbf{b} next to matrix $A$ in the form of $[A | \textbf{b}]=\begin{bmatrix}
+    \begin{array}{cccc|c}
+        a_{11} & a_{12} & ... & a_{1n} & b_1\\
+        a_{21} & a_{22} & ... & a_{2n} & b_2\\
+        ... & ... & ... & ... & ... \\
+        a_{s1} & a_{s2} & ... & a_{sn} & b_n \\
+    \end{array}
+    \end{bmatrix}$, called the \textbf{augmented matrix}.
 \end{notation}
 
 
+
+\subsection{Solving Linear Equations}
+To solve a system of linear equations, we use the technique of \textit{elimination}. The three basic elimination operations are
+\begin{enumerate}
+    \item Add two linear equations
+    \item Swap two linear equations
+    \item Multiply a linear equation by a non-zero number
+\end{enumerate}
+The solutions to the system of linear equations remain unchanged after the elimination operations.
+
+\begin{example}
+    Suppose we have the following linear equations. We can apply the elimination operations step-by-step. 
+    \begin{align}
+        x_1 + & 2x_2 + x_3 = 2 \\ \notag
+        3x_1 + & 8x_2 + x_3 = 12 \\ \notag
+        & 4x_2 + x_3 = 2 \notag
+    \end{align}
+    $\xrightarrow{\text{(2) = (2) - 3 $\cdot$ (1)}}$
+    \begin{align}
+        x_1 + & 2x_2 + x_3 = 2 \\ \notag
+        & 2x_2 - 2x_3 = 6 \\ \notag
+        & 4x_2 + x_3 = 2
+    \end{align}
+    $\xrightarrow{\text{(3) = (3) - 2 $\cdot$ (2)}}$
+    \begin{align}
+        x_1 + 2x_2 + & x_3 = 2 \\ \notag
+        2x_2 - & 2x_3 = 6 \\ \notag
+        & 5x_3 = -10
+    \end{align}
+    $\xrightarrow{\text{(3) = (3) - 2 $\cdot$ (2)}}$
+    \begin{align}
+        x_1 + 2x_2 + & x_3 = 2 \\ \notag
+        2x_2 - & 2x_3 = 6 \\ \notag
+        & 5x_3 = -10
+    \end{align}
+    Then by back substitution, we can easily obtain $x_3=-2$, $x_2=1$, and $x_1=2$.
+\end{example}
+
+
+If the system of linear equations is denoted in matrix representation, we can correspondingly use \textit{elimination matrix} and \textit{permutation matrix} to perform the elimination transformations.
 
 
 
@@ -192,23 +245,83 @@ Taking one more step forward, we write the linear equations in (\ref{ex_lin_eqn}
 
 
 \newpage
-\section{Vector Space}
-\begin{definition}[Binary Operation] Let $\mathbb{F}$ be a set. A binary operation is a function $\mathbb{F}$ $\times$ $\mathbb{F}$ $\rightarrow$ $\mathbb{F}$.
+\section{Vector Spaces}
+\fbox{
+    \parbox{0.8\textwidth}{
+        Think of a field as a generalization of $\mathbb{R}$. \\
+        Think of a vector space as a generalization of $\mathbb{R}^2$, $\mathbb{R}^3$, ...
+    }
+}
+\subsection{Fields}
+\begin{definition}[Binary Operation] Let $\mathbb{F}$ be a set. A \textbf{binary operation} is a function $\mathbb{F}$ $\times$ $\mathbb{F}$ $\rightarrow$ $\mathbb{F}$.
 \end{definition}
 \begin{example} Addition on real numbers is a binary operation.
 \end{example}
 
-\begin{definition}[Field] A Field $\mathbb{F}$ is a set together with two binary operations \textbf{addition} and \textbf{multiplication}, such that the following properties hold:
+\begin{definition}[Field] A \textbf{field $\mathbb{F}$} is a set together with two binary operations \textbf{addition} and \textbf{multiplication}, such that the following properties hold:
     \begin{equation}
     \begin{split}
-    & \forall \alpha, \beta \in \mathbb{F}, \ \alpha+\beta=\beta+\alpha \ (additive \ commutativity) \\
-    & \forall \alpha, \beta, \gamma \in \mathbb{F}, \ \alpha+(\beta+\gamma)=(\alpha+\beta)+\gamma \ (additive \ associativity) \\
-    & \forall \alpha, \beta \in \mathbb{F}, \alpha \cdot \beta = \beta \cdot \alpha \ (multiplicative \ commutativity) \\
-    & \forall \alpha, \beta, \gamma \in \mathbb{F}, \ \alpha \cdot (\beta \cdot \gamma)=(\alpha \cdot \beta) \cdot \gamma \ (multiplicative \ associativity) \\
-    & \forall \alpha, \beta, \gamma \in \mathbb{F}, \alpha \cdot (\beta + \gamma)=\alpha \cdot \beta + \alpha \cdot \gamma \ (distributivity) \\
+    & \forall \ \alpha, \beta \in \mathbb{F}, \ \alpha+\beta=\beta+\alpha \ (additive \ commutativity) \\
+    & \forall \ \alpha, \beta, \gamma \in \mathbb{F}, \ \alpha+(\beta+\gamma)=(\alpha+\beta)+\gamma \ (additive \ associativity) \\
+    & \forall \ \alpha, \beta \in \mathbb{F}, \ \alpha \cdot \beta = \beta \cdot \alpha \ (multiplicative \ commutativity) \\
+    & \forall \ \alpha, \beta, \gamma \in \mathbb{F}, \ \alpha \cdot (\beta \cdot \gamma)=(\alpha \cdot \beta) \cdot \gamma \ (multiplicative \ associativity) \\
+    & \forall \ \alpha, \beta, \gamma \in \mathbb{F}, \ \alpha \cdot (\beta + \gamma)=\alpha \cdot \beta + \alpha \cdot \gamma \ (distributivity) \\
+    & \exists \ 0 \in \mathbb{F}, \ s.t. \ \forall \ \alpha \in \mathbb{F}, \ 0 + \alpha = \alpha \ (additive \ identity) \\
+    & \forall \ \alpha \in \mathbb{F}, \ \exists \ -\alpha \in \mathbb{F}, \ s.t. \ \alpha + (-\alpha) = 0 \ (additive \ inverse) \\
+    & \exists \ 1 \in \mathbb{F}, \ s.t. \ \forall \ \alpha \in \mathbb{F}, \ 1 \cdot \alpha = \alpha \ (multiplicative \ identity) \\
+    & \forall \ \alpha \in \mathbb{F} \ \& \ \alpha \neq 0, \ \exists \ {\alpha}^{-1} \in \mathbb{F}, \ s.t. \ \alpha \cdot {\alpha}^{-1} = 1 \ (multiplicative \ inverse)
     \end{split}
     \end{equation}
 \end{definition}
+
+
+\begin{example} \
+    \begin{enumerate}
+        \item $\mathbb{Z}$ is not a field, because the property of \textit{multiplicative inverse} is violated.
+        \item $\mathbb{Q}$ is a field.
+        \item $\mathbb{R}$ is a field.
+        \item $\mathbb{C}$ is a field.
+        \item $\mathbb{Q}(\sqrt{2})=\{a+b\sqrt{2} \ |\ a,b \in \mathbb{Q} \}$ is a field.
+        \item $\mathbb{Q}(i)=\{a+bi \ |\ a,b \in \mathbb{Q} \}$ is a field.
+        \item The set \{0,1\} along with the following operations forms a field. \\
+        \begin{multicols}{2}
+            \noindent
+            \begin{tabular}{l|cr}
+                + & 0 & 1 \\
+                \hline
+                0 & 0 & 1 \\
+                1 & 0 & 1
+            \end{tabular}
+            
+            \columnbreak
+            
+            \noindent
+            \begin{tabular}{l|cr}
+                $\times$ & 0 & 1 \\
+                \hline
+                0 & 0 & 0 \\
+                1 & 0 & 1
+        \end{tabular}
+        \end{multicols}
+    \end{enumerate}
+\end{example}
+
+\begin{definition}[Scalar]
+    Elements of a field are commonly referred as \textbf{scalars}.
+\end{definition}
+
+From now on, when we talk about a system of linear equations or a matrix, we always refer to it on a field $\mathbb{F}$, where all its coefficients, constants and solutions are elements of the field $\mathbb{F}$.
+
+\subsection{Vector Spaces and Subspaces}
+
+
+
+
+\section{Matrices}
+% 丘维声 chapter 1 page 4
+
+
+
 
 % ------------------
 % Reference and Cited Works
