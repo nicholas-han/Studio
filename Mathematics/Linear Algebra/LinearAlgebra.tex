@@ -3,6 +3,7 @@
 \usepackage{amsmath, amsthm, amssymb, amsfonts}
 \usepackage{thmtools}
 \usepackage{graphicx}
+\usepackage{enumitem}
 \usepackage{setspace}
 \usepackage{multicol}
 \usepackage{extarrows}
@@ -23,14 +24,13 @@
 \newtheorem{axiom}{Axiom}[section] % a basic assumption about a mathematical situation
 \newtheorem{definition}{Definition}[section] % an explanation of the mathematical meaning of a word
 \newtheorem{notation}{Notation}[section] % an equivalent manifestation introduced to simplify mathematical writings
-\newtheorem{theorem}{Theorem}[theorem] % a statement that has been proven to be true
-\newtheorem{proposition}{Proposition}[theorem] % a less important but nonetheless interesting true statement
-\newtheorem{corollary}{Corollary}[theorem] % a true statment that is a simple deduction from a theorem or proposition
-\newtheorem{property}{Property}[theorem] % an obvious conclusion deducted from a theorem or proposition
-\newtheorem{lemma}{Lemma}[theorem] % a less important theorem that is helpful in proving other true statements
-\newtheorem{conjecture}{Conjecture}[section] % a statement believed to be true, but not yet proved
 \newtheorem{example}{Example}[section]
-
+\newtheorem{conjecture}{Conjecture}[section] % a statement believed to be true, but not yet proved
+\newtheorem{theorem}{Theorem}[section] % a statement that has been proven to be true
+\newtheorem{proposition}{Proposition}[section] % a less important but nonetheless interesting true statement
+\newtheorem{lemma}{Lemma}[section] % a less important theorem that is helpful in proving other true statements
+\newtheorem{corollary}{Corollary}[section] % a true statment that is a simple deduction from a theorem or proposition
+\newtheorem{property}{Property}[section] % an obvious conclusion deducted from a theorem or proposition
 
 \setstretch{1.2}
 \geometry{
@@ -162,7 +162,52 @@ We want to find numbers $x$ and $y$ so that $x$ copies of vector $\begin{bmatrix
 
 This representation of linear equations corresponds to that of vectors that we studied in high school.
 
-\subsubsection{Matrix Representation}
+\subsubsection{Matrix Representation (by Rows and Columns)}
+Is there a more holistic way to view a system of linear equations? Yes, by using a matrix. Let's wait until we introduce the idea of matrix in the next chapter.
+
+
+
+\subsection{Solving Linear Equations}
+To solve a system of linear equations, we use the technique of \textit{elimination}. The three basic elimination operations are
+\begin{enumerate}
+    \item Add two linear equations
+    \item Swap two linear equations
+    \item Multiply a linear equation by a non-zero number
+\end{enumerate}
+The solutions to the system of linear equations remain unchanged after the elimination operations.
+
+\begin{example}\label{ex_elim}
+    Suppose we have the following linear equations. We can apply the elimination operations step-by-step. 
+    \begin{align}
+        x_1 + & 2x_2 + x_3 = 2 \\ \notag
+        3x_1 + & 8x_2 + x_3 = 12 \\ \notag
+        & 4x_2 + x_3 = 2 \notag
+    \end{align}
+    $\xrightarrow{\text{(2) = (2) - 3 $\cdot$ (1)}}$
+    \begin{align}
+        x_1 + & 2x_2 + x_3 = 2 \\ \notag
+        & 2x_2 - 2x_3 = 6 \\ \notag
+        & 4x_2 + x_3 = 2
+    \end{align}
+    $\xrightarrow{\text{(3) = (3) - 2 $\cdot$ (2)}}$
+    \begin{align}
+        x_1 + 2x_2 + & x_3 = 2 \\ \notag
+        2x_2 - & 2x_3 = 6 \\ \notag
+        & 5x_3 = -10
+    \end{align}
+    $\xrightarrow{\text{(3) = (3)/5 }}$
+    \begin{align}
+        x_1 + 2x_2 + & x_3 = 2 \\ \notag
+        2x_2 - & 2x_3 = 6 \\ \notag
+        & x_3 = -2
+    \end{align}
+    Then by back substitution, we can easily obtain $x_3=-2$, $x_2=1$, and $x_1=2$.
+\end{example}
+
+\section{Matrices}
+% 丘维声 chapter 1 page 4
+% MIT notes的matrix multiplication
+
 Taking one more step forward, we write the linear equations in (\ref{ex_lin_eqn}) as a single equation using matrices and vectors.
 
 \begin{center}
@@ -187,8 +232,8 @@ Taking one more step forward, we write the linear equations in (\ref{ex_lin_eqn}
     \end{bmatrix}$. The vector $\textbf{x}=\begin{bmatrix}x_1 \\ x_2 \\ ... \\ x_n \end{bmatrix}$ is the vector of unknowns. The values on the RHS of the equations are denoted as $\textbf{b}=\begin{bmatrix}b_1 \\ b_2 \\ ... \\ b_n \end{bmatrix}$. Thus, we have $A\textbf{x}=\textbf{b}$.
     We can also write the coefficient vector \textbf{b} next to matrix $A$ in the form of $[A | \textbf{b}]=\begin{bmatrix}
     \begin{array}{cccc|c}
-        a_{11} & a_{12} & ... & a_{1n} & b_1\\
-        a_{21} & a_{22} & ... & a_{2n} & b_2\\
+        a_{11} & a_{12} & ... & a_{1n} & b_1 \\
+        a_{21} & a_{22} & ... & a_{2n} & b_2 \\
         ... & ... & ... & ... & ... \\
         a_{s1} & a_{s2} & ... & a_{sn} & b_n \\
     \end{array}
@@ -196,49 +241,76 @@ Taking one more step forward, we write the linear equations in (\ref{ex_lin_eqn}
 \end{notation}
 
 
+\subsection{Revisit: Solving Linear Equations (in Matrix Representation)}
+If the system of linear equations is denoted in matrix representation, we can correspondingly use \textit{elimination matrices} and \textit{permutation matrices} to perform the elimination operations.
 
-\subsection{Solving Linear Equations}
-To solve a system of linear equations, we use the technique of \textit{elimination}. The three basic elimination operations are
-\begin{enumerate}
-    \item Add two linear equations
-    \item Swap two linear equations
-    \item Multiply a linear equation by a non-zero number
-\end{enumerate}
-The solutions to the system of linear equations remain unchanged after the elimination operations.
+\begin{notation}
+    An elimination matrix \textit{$E_{ij}$} takes the form of an identity matrix with one non-zero entry off the main diagonal, say \textit{k}, at the entry of \textit{(i,j)}, such that it performs the operation of adding \textit{k} times of row \textit{j} to row \textit{i}.
+\end{notation}
 
-\begin{example}
-    Suppose we have the following linear equations. We can apply the elimination operations step-by-step. 
-    \begin{align}
-        x_1 + & 2x_2 + x_3 = 2 \\ \notag
-        3x_1 + & 8x_2 + x_3 = 12 \\ \notag
-        & 4x_2 + x_3 = 2 \notag
-    \end{align}
-    $\xrightarrow{\text{(2) = (2) - 3 $\cdot$ (1)}}$
-    \begin{align}
-        x_1 + & 2x_2 + x_3 = 2 \\ \notag
-        & 2x_2 - 2x_3 = 6 \\ \notag
-        & 4x_2 + x_3 = 2
-    \end{align}
-    $\xrightarrow{\text{(3) = (3) - 2 $\cdot$ (2)}}$
-    \begin{align}
-        x_1 + 2x_2 + & x_3 = 2 \\ \notag
-        2x_2 - & 2x_3 = 6 \\ \notag
-        & 5x_3 = -10
-    \end{align}
-    $\xrightarrow{\text{(3) = (3) - 2 $\cdot$ (2)}}$
-    \begin{align}
-        x_1 + 2x_2 + & x_3 = 2 \\ \notag
-        2x_2 - & 2x_3 = 6 \\ \notag
-        & 5x_3 = -10
-    \end{align}
-    Then by back substitution, we can easily obtain $x_3=-2$, $x_2=1$, and $x_1=2$.
-\end{example}
+For \ref{ex_elim}, we can therefore write the elimination operations as
+\begin{equation}
+    E_{12}=
+    \begin{bmatrix}
+        \begin{array}{ccc}
+            1 & 0 & 0 \\
+            -3 & 1 & 0 \\
+            0 & 0 & 1
+        \end{array}
+    \end{bmatrix}, E_{23}=
+    \begin{bmatrix}
+        \begin{array}{ccc}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & -2 & 1
+        \end{array}
+    \end{bmatrix}
+\end{equation}
 
+That is, $E_{23}(E_{12}A)=U$.
+\begin{equation}
+    \begin{bmatrix}
+        \begin{array}{ccc}
+            1 & 0 & 0 \\
+            -3 & 1 & 0 \\
+            0 & 0 & 1
+        \end{array}
+    \end{bmatrix}
+    \begin{bmatrix}
+        \begin{array}{ccc}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & -2 & 1
+        \end{array}
+    \end{bmatrix}
+    \begin{bmatrix}
+        \begin{array}{ccc}
+            1 & 2 & 1 \\
+            3 & 8 & 1 \\
+            0 & 4 & 1
+        \end{array}
+    \end{bmatrix}=
+    \begin{bmatrix}
+        \begin{array}{ccc}
+            1 & 2 & 1 \\
+            0 & 2 & -2 \\
+            0 & 0 & 1
+        \end{array}
+    \end{bmatrix}
+\end{equation}
 
-If the system of linear equations is denoted in matrix representation, we can correspondingly use \textit{elimination matrix} and \textit{permutation matrix} to perform the elimination transformations.
+A permutation matrix P takes the form of an identity matrix swapping two rows, and performs the task of exchanging two rows of a matrix.
+\begin{equation}
+    \begin{bmatrix}
+        \begin{array}{ccc}
+            0 & 1 & 0 \\
+            1 & 0 & 0 \\
+            0 & 0 & 1
+        \end{array}
+    \end{bmatrix}
+\end{equation}
 
-
-
+This approach is called the Gauss-Jordan Elimination, where Gauss's elimination method converts the original matrix to upper triangular form, and Jordan's method further eliminates the entries in the upper right side of the matrix.
 
 
 
@@ -253,25 +325,26 @@ If the system of linear equations is denoted in matrix representation, we can co
     }
 }
 \subsection{Fields}
-\begin{definition}[Binary Operation] Let $\mathbb{F}$ be a set. A \textbf{binary operation} is a function $\mathbb{F}$ $\times$ $\mathbb{F}$ $\rightarrow$ $\mathbb{F}$.
+\begin{definition}[Binary Operation]
+    Let $\mathbb{F}$ be a set. A \textbf{binary operation} is a function $\mathbb{F}$ $\times$ $\mathbb{F}$ $\rightarrow$ $\mathbb{F}$.
 \end{definition}
-\begin{example} Addition on real numbers is a binary operation.
+\begin{example}
+    Addition on real numbers is a binary operation.
 \end{example}
 
-\begin{definition}[Field] A \textbf{field $\mathbb{F}$} is a set together with two binary operations \textbf{addition} and \textbf{multiplication}, such that the following properties hold:
-    \begin{equation}
-    \begin{split}
-    & \forall \ \alpha, \beta \in \mathbb{F}, \ \alpha+\beta=\beta+\alpha \ (additive \ commutativity) \\
-    & \forall \ \alpha, \beta, \gamma \in \mathbb{F}, \ \alpha+(\beta+\gamma)=(\alpha+\beta)+\gamma \ (additive \ associativity) \\
-    & \forall \ \alpha, \beta \in \mathbb{F}, \ \alpha \cdot \beta = \beta \cdot \alpha \ (multiplicative \ commutativity) \\
-    & \forall \ \alpha, \beta, \gamma \in \mathbb{F}, \ \alpha \cdot (\beta \cdot \gamma)=(\alpha \cdot \beta) \cdot \gamma \ (multiplicative \ associativity) \\
-    & \forall \ \alpha, \beta, \gamma \in \mathbb{F}, \ \alpha \cdot (\beta + \gamma)=\alpha \cdot \beta + \alpha \cdot \gamma \ (distributivity) \\
-    & \exists \ 0 \in \mathbb{F}, \ s.t. \ \forall \ \alpha \in \mathbb{F}, \ 0 + \alpha = \alpha \ (additive \ identity) \\
-    & \forall \ \alpha \in \mathbb{F}, \ \exists \ -\alpha \in \mathbb{F}, \ s.t. \ \alpha + (-\alpha) = 0 \ (additive \ inverse) \\
-    & \exists \ 1 \in \mathbb{F}, \ s.t. \ \forall \ \alpha \in \mathbb{F}, \ 1 \cdot \alpha = \alpha \ (multiplicative \ identity) \\
-    & \forall \ \alpha \in \mathbb{F} \ \& \ \alpha \neq 0, \ \exists \ {\alpha}^{-1} \in \mathbb{F}, \ s.t. \ \alpha \cdot {\alpha}^{-1} = 1 \ (multiplicative \ inverse)
-    \end{split}
-    \end{equation}
+\begin{definition}[Field]
+    A \textbf{field $\mathbb{F}$} is a set together with two binary operations \textbf{addition} and \textbf{multiplication}, such that the following properties hold:
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\forall \ \alpha, \beta \in \mathbb{F}, \ \alpha+\beta=\beta+\alpha \ (additive \ commutativity)$
+        \item $\forall \ \alpha, \beta, \gamma \in \mathbb{F}, \ \alpha+(\beta+\gamma)=(\alpha+\beta)+\gamma \ (additive \ associativity)$
+        \item $\forall \ \alpha, \beta \in \mathbb{F}, \ \alpha \cdot \beta = \beta \cdot \alpha \ (multiplicative \ commutativity)$
+        \item $\forall \ \alpha, \beta, \gamma \in \mathbb{F}, \ \alpha \cdot (\beta \cdot \gamma)=(\alpha \cdot \beta) \cdot \gamma \ (multiplicative \ associativity)$
+        \item $\forall \ \alpha, \beta, \gamma \in \mathbb{F}, \ \alpha \cdot (\beta + \gamma)=\alpha \cdot \beta + \alpha \cdot \gamma \ (distributivity)$
+        \item $\exists \ 0 \in \mathbb{F}, \ s.t. \ \forall \ \alpha \in \mathbb{F}, \ 0 + \alpha = \alpha \ (additive \ identity)$
+        \item $\forall \ \alpha \in \mathbb{F}, \ \exists \ -\alpha \in \mathbb{F}, \ s.t. \ \alpha + (-\alpha) = 0 \ (additive \ inverse)$
+        \item $\exists \ 1 \in \mathbb{F}, \ s.t. \ \forall \ \alpha \in \mathbb{F}, \ 1 \cdot \alpha = \alpha \ (multiplicative \ identity)$
+        \item $\forall \ \alpha \in \mathbb{F} \ \& \ \alpha \neq 0, \ \exists \ {\alpha}^{-1} \in \mathbb{F}, \ s.t. \ \alpha \cdot {\alpha}^{-1} = 1 \ (multiplicative \ inverse)$
+    \end{enumerate}
 \end{definition}
 
 
@@ -283,7 +356,7 @@ If the system of linear equations is denoted in matrix representation, we can co
         \item $\mathbb{C}$ is a field.
         \item $\mathbb{Q}(\sqrt{2})=\{a+b\sqrt{2} \ |\ a,b \in \mathbb{Q} \}$ is a field.
         \item $\mathbb{Q}(i)=\{a+bi \ |\ a,b \in \mathbb{Q} \}$ is a field.
-        \item The set \{0,1\} along with the following operations forms a field. \\
+        \item The set \{0,1\} along with the following operations forms a field.
         \begin{multicols}{2}
             \noindent
             \begin{tabular}{l|cr}
@@ -313,14 +386,47 @@ If the system of linear equations is denoted in matrix representation, we can co
 From now on, when we talk about a system of linear equations or a matrix, we always refer to it on a field $\mathbb{F}$, where all its coefficients, constants and solutions are elements of the field $\mathbb{F}$.
 
 \subsection{Vector Spaces and Subspaces}
+\begin{definition}[Vector Space]\label{def_vecspace}
+    A vector space $\mathbb{V}$ over a field $\mathbb{F}$ is a set together with two functions, addition $+: \mathbb{V} \times \mathbb{V} \rightarrow \mathbb{V}$ and scalar multiplication $\cdot: \mathbb{F} \times \mathbb{V} \rightarrow \mathbb{V}$, s.t. the following properties hold.
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\forall \ u,v \in \mathbb{V}, \ u+v=v+u \ (additive \ commutativity)$
+        \item $\forall \ u,v,w \in \mathbb{V}, \ u+(v+w)=(u+v)+w \ (additive \ associativity)$
+        \item $\exists \ 0 \mathbb{V}, \ s.t. \ \forall u \in \mathbb{V}, \ 0+u=u \ (additive \ identity)$
+        \item $ \forall \ u \in \mathbb{V}, \ \exists \ (-u) \in \mathbb{V}, \ s.t. \ u+(-u)=0 \ (additive \ inverse)$
+        \item $ \forall \ u \in \mathbb{V}, \ \forall \ \alpha,\beta \in \mathbb{F}, \ \alpha \cdot(\beta \cdot u)=(\alpha \cdot \beta) \cdot u \ (scalar \ multiplicative \ associativity) $
+        \item $ \forall \ u \in \mathbb{V}, \ \forall \ \alpha,\beta \in \mathbb{F}, \ (\alpha+\beta) \cdot u = \alpha \cdot u + \beta \cdot u (scalar \ distributivity)$
+        \item $ \forall \ u,v \in \mathbb{V}, \ \forall \ \alpha \in \mathbb{F}, \ \alpha \cdot (u+v) = \alpha \cdot u  + \alpha \cdot v \ (vector \ distributivity)$
+        \item $ \forall \ u \in \mathbb{V}, \ 1 \in \mathbb{F}, \ 1 \cdot u = u \ (multiplicative \ identity)$
+    \end{enumerate}
+\end{definition}
+
+\begin{example} \
+    \begin{enumerate}
+        \item $\mathbb{R}$, $\mathbb{R}^2$, ..., $\mathbb{R}^n$ are vector spaces over $\mathbb{R}$.
+        \item Let $x$ be a real variable, the set $P_2(\mathbb{R})$ of all real polynomials in the variable $x$ of degree $\leq 2 $ is a vector space over $\mathbb{R}$. More generally, the set $P(\mathbb{R})$ of all real polynomials in the variable $x$ is a vector space over $\mathbb{R}$.
+        \item Let $\mathbb{V}$ be a set of infinitely differentiable functions $f: [0,1] \rightarrow \mathbb{R}$ s.t. $f(0)=f(1)=0$, then $\mathbb{V}$ is a vector space of $\mathbb{R}$.
+    \end{enumerate}
+\end{example}
 
 
 
 
-\section{Matrices}
-% 丘维声 chapter 1 page 4
-
-
+\begin{proposition}[Vector Cancellation Law]
+   Let $\mathbb{V}$ be a vector space over a field $\mathbb{F}$, and let $u,v,w \in \mathbb{V}$, s.t. $u+v=u+w$, then $v=w$.
+\end{proposition}
+\begin{proof}
+    In order to prove $v=w$, we start with the LHS and perform operations to achieve the RHS.
+    \begin{align*}
+        LHS = v &= 0 + v & \text{...(3)} \\
+        &= u + (-u) + v & \text{...(4)} \\
+        &= (-u) + u + v & \text{...(1)} \\
+        &= (-u) + (u + v) & \text{...(2)} \\
+        &= (-u) + (u + w) & \text{...(assumption)} \\
+        &= (-u) + u + w & \text{...(2)} \\
+        &= 0 + w & \text{...(3)} \\
+        &= w = RHS & \text{...(3)}
+    \end{align*}
+\end{proof}
 
 
 % ------------------
