@@ -39,7 +39,7 @@ Go global in minutes. Easily deploy your application in multiple Regions around 
 Infrastructure, like data centers and networking connectivity, still exists as the foundation of every cloud application. In AWS, this physical infrastructure makes up the AWS Global Infrastructure, in the form of Availability Zones and Regions.
 
 ### Regions
-![Amazon Regions](Amazon Regions.png)
+![Amazon Regions](Amazon_Regions.png)
 
 Regions are geographic locations worldwide where AWS hosts its data centers. AWS Regions are named after the location where they reside. For example, in the United States, there is a Region in Northern Virginia called the Northern Virginia Region and a Region in Oregon called the Oregon Region. There are Regions in Asia Pacific, Canada, Europe, the Middle East, and South America, and AWS continues to expand to meet the needs of its customers.Each AWS Region is associated with a geographical name and a Region code.
 
@@ -62,7 +62,7 @@ Consider four main aspects when deciding which AWS Region to host your applicati
 **Data compliance.** Enterprise companies often need to comply with regulations that require customer data to be stored in a specific geographic territory. If applicable, you should choose a Region that meets your compliance requirements.
 
 ### Availability Zones (AZ)
-![Region - AZ - DC (1)](Region - AZ - DC (1).png)
+![Region - AZ - DC (1)](Region_AZ_DC_(1).png)
 
 Inside every Region is a cluster of Availability Zones (AZ). An AZ consists of one or more data centers with redundant power, networking, and connectivity. These data centers operate in discrete facilities with undisclosed locations. They are connected using redundant high-speed and low-latency links. AZs also have a code name. Since they’re located inside Regions, they can be addressed by appending a letter to the end of the Region code name. For example:
 
@@ -77,7 +77,7 @@ Depending on the AWS Service you use, your resources are either deployed at the 
 ### Maintain Resiliency
 To keep your application available, you need to maintain high availability and resiliency. A well-known best practice for cloud architecture is to use Region-scoped, managed services. These services come with availability and resiliency built in. When that is not possible, make sure the workload is replicated across multiple AZs. At a minimum, you should use two AZs. If one entire AZ fails, your application will have infrastructure up and running in at least a second AZ to take over the traffic.
 
-![Region - AZ - DC (2)](Region - AZ - DC (2).png)
+![Region - AZ - DC (2)](Region_AZ_DC_(2).png)
 
 **Resources:**
 
@@ -134,7 +134,7 @@ print(response)
 ## Security and the AWS Shared Responsibility Model
 When you begin working with the AWS Cloud, managing security and compliance is a shared responsibility between AWS and you. To depict this shared responsibility, AWS created the shared responsibility model. This distinction of responsibility is commonly referred to as security of the cloud, versus security in the cloud.
 
-![Shared Responsibility](Shared Responsibility.png)
+![Shared Responsibility](Shared_Responsibility.png)
 
 ### What is AWS Responsible For?
 AWS is responsible for security of the cloud. This means AWS is required to protect and secure the infrastructure that runs all the services offered in the AWS Cloud. AWS is responsible for:
@@ -358,3 +358,44 @@ If you have an organization that spans many employees and multiple AWS accounts,
 
 - [AWS: Security Best Practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
 - [How to create and manage users within AWS IAM Identity Center](https://aws.amazon.com/blogs/security/how-to-create-and-manage-users-within-aws-sso/)
+
+## Introduction to Elastic Compute Cloud (EC2)
+### What is Amazon EC2?
+Amazon EC2 is a web service that provides secure, resizable compute capacity in the cloud. It allows you to provision virtual servers called EC2 instances. Although AWS uses the phrase “web service” to describe it, it doesn’t mean that you are limited to running just web servers on your EC2 instances. You can create and manage these instances through the AWS Management Console, the AWS Command Line Interface (CLI), AWS Software Development Kits (SDKs), or through automation tools and infrastructure orchestration services.In order to create an EC2 instance, you need to define:
+
+- Hardware specifications, like CPU, memory, network, and storage.
+- Logical configurations, like networking location, firewall rules, authentication, and the operating system of your choice.
+
+When launching an EC2 instance, the first setting you configure is which operating system you want by selecting an Amazon Machine Image (AMI).
+
+### What is an AMI?
+In the traditional infrastructure world, the process of spinning up a server consists of installing an operating system from installation disks, installation drives, or installation wizards over the network. In the AWS Cloud, this operating system installation is no longer your responsibility, and is instead built into the AMI that you choose. Not only does an AMI let you configure which operating system you want, you can also select storage mappings, the architecture type (such as 32-bit, 64-bit, or 64-bit ARM), and additional software installed.
+
+### What is the Relationship Between AMIs and EC2 Instances?
+EC2 instances are live instantiations of what is defined in an AMI, much like a cake is a live instantiation of a cake recipe. If you are familiar with software development, you can also see this kind of relationship between a Class and an Object.
+
+A Class is something you model and define, while an object is something you interact with. In this case, the AMI is how you model and define your instance, while the EC2 instance is the entity you interact with, where you can install your web server, and serve your content to users. When you launch a new instance, AWS allocates a virtual machine that runs on a hypervisor. Then the AMI you selected is copied to the root device volume, which contains the image used to boot the volume. In the end, you get a server you can connect to and install packages and any additional software. In this case, you install a web server along with the properly configured source code of your employee directory app. 
+
+![AMI EC2 Diagram](AMI_EC2_Diagram.png)
+
+One advantage of using AMIs is that they are reusable. 
+
+You might choose a Linux-based AMI and configure the HTTP server, application packages, and any additional software you may need to run your application.
+
+If you wanted to create a second EC2 instance with the same configurations, how can you easily do that? One option is to go through the entire instance creation and configuration process and try to match your settings to the first instance. However, this is time consuming and leaves room for human error. The second, better option, is to create an AMI from your running instance and use this AMI to start a new instance. This way, your new instance will have all the same configurations as your current instance, because the configurations set in the AMIs are the same.
+
+![AMI Reusability](AMI_Reusability.png)
+
+### Where Can You Find AMIs?
+You can select an AMI from the following categories.
+
+- Quick Start AMIs that are premade by AWS and allow you to get started quickly.
+- AWS Marketplace AMIs that provide popular open source and commercial software from third-party vendors.
+- Community AMIs that are provided by the AWS user community.
+- My AMIs that are created from your EC2 instances.
+- Build your own custom image with EC2 Image Builder.
+
+Each AMI in the AWS Management Console has an AMI ID, which is prefixed by “ami-”, followed by a random hash of numbers and letters. These IDs are unique to each AWS region.
+
+![Choose AMI](Choose_AMI.png)
+
